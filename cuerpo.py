@@ -1,6 +1,6 @@
 import cv2
 camara = cv2.VideoCapture(0)
-rostrosEntrenado = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_fullbody.xml")
+rostrosEntrenado = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_upperbody.xml")
 while(camara.isOpened()):
     ret,imagen=camara.read()
     gray = cv2.cvtColor(imagen, cv2.COLOR_BGR2GRAY)

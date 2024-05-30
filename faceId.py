@@ -5,8 +5,9 @@ dataPath = "C:/Users/aleco/Documents/GitHub/python/openCV/Practica1/rostros"
 imagePath = os.listdir(dataPath)
 print("iamgepath",imagePath)
 
-entrenamiento=cv2.face.EigenFaceRecognizer_create()
-entrenamiento.read("modeloEigenFace.xml")
+#entrenamiento=cv2.face.EigenFaceRecognizer_create()
+entrenamiento = cv2.face.LBPHFaceRecognizer_create()
+entrenamiento.read("LBPHFaceRecognizer.xml")
 
 camara = cv2.VideoCapture(0)
 rostrosEntrenado = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
@@ -21,7 +22,7 @@ while(camara.isOpened()):
          result = entrenamiento.predict(capturado)
          cv2.putText(imagen,"{}".format(result),(x,y-5),1,1.3,(255,255,0),1,cv2.LINE_AA)
          
-         if result[1]<4000:
+         if result[1]<61:
             cv2.putText(imagen,"{}".format(imagePath[result[0]]),(x,y-25),1,1.3,(255,255,0),1,cv2.LINE_AA)
          else:
              cv2.putText(imagen,"Rostro no detectado",(x,y-25),1,1.3,(255,255,0),1,cv2.LINE_AA)
